@@ -4,7 +4,7 @@
 
 #show: doc => MetaNote(
   title: [
-    Discrete Mathematics
+    Practice of Frontier Computing
   ],
   authors: (
     (
@@ -16,8 +16,4 @@
   doc,
 )
 
-#include "sets.typ"
-
-#include "categories.typ"
-
-#include "logic.typ"
+=
