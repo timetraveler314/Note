@@ -564,6 +564,45 @@ Before we introduce the concept of harmonic functions, let's see some equalities
 
 = Differential Equations
 
+== Integrating Factor
+
+=== Integrating Factor for Homogeneous Equations
+
+#lemma("Euler")[
+  Let $f(x,y)$ be a homogeneous function of degree $n$, Then $
+  n f(x,y) = x pdv(f,x) + y pdv(f,y).
+  $
+]
+
+#proof[
+  Take the derivative of $f(t x, t y)$ w.r.t. $t$:
+
+  $
+  x pdv(,x) f(x,t y) + y pdv(,y) f(t x, y) = pdv(,t) (t^n f(x,y)) = n t^(n-1) f(x,y).
+  $
+
+  Letting $t=1$, we get the desired result.
+]
+
+Now we consider the homogeneous ODE
+
+$
+M(x,y) dif x + N(x,y) dif y = 0,
+$
+
+where $M, N$ are homogeneous functions of the same degree $k$. We assume $mu$ to be a homogeneous integrating factor of degree $d$. Then by the lemma above,
+
+$
+x pdv(,x) (mu M) + y pdv(,y) (mu M) &= (k+d) mu M, \
+x pdv(,x) (mu M) + y pdv(,x) (mu N) &= (k+d) mu M, ("Property of Integrating Factor") \
+[mu M + x pdv(,x) (mu M)] dif x + pdv(,x) (y dot mu M) dif y &= (k+d+1) mu M, \
+pdv(,x) (mu (x M + y N)) &= (k+d+1) mu M.
+$
+
+Similarly, $pdv(,y) (mu (x M + y N)) = (k+d+1) mu N$.
+
+We might want $k=-d-1$ to eliminate RHS, then we will see $mu (x M + y N) = c$ is a constant. Wonderfully, we have found the integrating factor $mu = 1/(x M + y N)$, which is homogeneous of degree $-d-1$, consistent with our assumption.
+
 == Existence and Uniqueness of Solutions
 
 === Picard Iteration
