@@ -21,3 +21,5 @@
 #include "categories.typ"
 
 #include "logic.typ"
+
+#include "graph.typ"
