@@ -1,4 +1,4 @@
-#import "@local/MetaNote:0.0.1" : *
+#import "@local/MetaNote:0.0.2" : *
 
 = Logic 
 
@@ -10,7 +10,7 @@
 
 To describe a proposition, we introduce the following syntax defining the set of propositions $prop$:
 
-#definition($"Syntax of" Prop$)[
+#definition(title: $"Syntax of" Prop$)[
   Atoms: $A := {p, q, r, ...}$;
 
   Connectives: $C := {not, and, or, ->, <->, bot}$;
@@ -28,12 +28,12 @@ The approach of semantics is to give a meaning to each proposition in $Prop$, wh
 
 In a pure semantics approach, we forget about the concrete meaning of propositions, only focusing on how the syntax, or strings, are manipulated. We first introduce the big-step natural deduction system for propositional logic.
 
-#definition("Natural Deduction")[
+#definition(title: "Natural Deduction")[
   We define the notation $ts$ as 
 ]
 
 The other is the small-step system _System K_, which is a sequent calculus.
 
-#definition("System K")[
+#definition(title: "System K")[
   System K features $=>$ as the meta
 ]

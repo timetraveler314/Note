@@ -1,5 +1,5 @@
-#import "@local/MetaNote:0.0.1" : *
-#import "@preview/fletcher:0.5.1" as fletcher: diagram, node, edge
+#import "@local/MetaNote:0.0.2" : *
+#import "@preview/fletcher:0.5.7" as fletcher: diagram, node, edge
 
 #let Ccat = math.cal($C$)
 #let CSet = math.serif("Set")
@@ -19,7 +19,7 @@
 
 From the enlightening view of the Yoneda perspective, we deduce that objects in a category are uniquely determined by their morphisms, up to isomorphism. To work with their morphismic representations, we will work in the so-called _presheaf category_ $Ccat^and := Fct(Ccat^opp, CSet)$.
 
-#definition("Presheaf Category")[
+#definition(title: "Presheaf Category")[
   The presheaf category $C^and$ is the category of contravariant functors from $C$ to $CSet$, i.e. functors $F: C^opp -> CSet$. The morphisms in $C^and$ are natural transformations between these functors.
 
   Similarly, we can define the _copresheaf category_:
@@ -32,7 +32,7 @@ From the enlightening view of the Yoneda perspective, we deduce that objects in 
 
 Now we can formally define the Yoneda embedding, which maps an object $X$ in $C$ to the contravariant functor that sends an vantage object $Z$ to the set of morphisms $Hom(Z, X)$.
 
-#definition("Yoneda Embedding")[
+#definition(title: "Yoneda Embedding")[
   The Yoneda embedding $Yon: Ccat -> Ccat^and$ is defined by
   $
   Yon &: Ccat -> Ccat^and \
@@ -42,7 +42,7 @@ Now we can formally define the Yoneda embedding, which maps an object $X$ in $C$
 
 Naturally, we have the evaluation functor $ev: Ccat^and times Ccat -> CSet$ that evaluates a presheaf $F$ at an object $X$, leading to the set $F(X)$.
 
-#definition("Evaluation Functor")[
+#definition(title: "Evaluation Functor")[
   The evaluation functor $ev^and: Ccat^and times Ccat -> CSet$ is defined by
   $
   ev^and &: Ccat^and times Ccat -> CSet \
@@ -52,7 +52,7 @@ Naturally, we have the evaluation functor $ev: Ccat^and times Ccat -> CSet$ that
 
 Now we can state the Yoneda lemma, which asserts that the Yoneda embedding is fully faithful as a consequence.
 
-#theorem("Yoneda")[
+#theorem(title: "Yoneda")[
   For any object $S in Ob(Ccat)$ and any presheaf $F in Ob(Ccat^and)$, we have a natural bijection from natural transformations $eta$ to elements in $F(S)$, given by
 
   $
@@ -140,7 +140,7 @@ Now we can state the Yoneda lemma, which asserts that the Yoneda embedding is fu
 
 Now that objects are basically the same thing as all the morphisms related to it, we will often omit the Yoneda embedding $Yon$ and see $Ccat$ as a full subcategory of $Ccat^and$. We might want to extend the concept to other presheaf in $Ccat^and$, i.e. whether it stands for a object in $Ccat$. So here comes the definition of _representable functor_, which will later be proved to show the property by its universal property.
 
-#definition("Representable Functor")[
+#definition(title: "Representable Functor")[
   We call $A: C^opp -> CSet$ a _representable functor_, if there exists $X in Ob(Ccat)$ and isomorphism $
   phi: Yon(X) ->^tilde A,
   $
@@ -149,7 +149,7 @@ Now that objects are basically the same thing as all the morphisms related to it
 
 In terms of the comma category, the representation element can be embedded into $(Yon slash A)$, corresponding to the functor $Ccat ->^Yon Ccat^and <-^(j_A) bold(1)$. Now we can state and prove the universal property and show why the representation element really lives up to its name, as we did to free vector spaces.
 
-#theorem("Universal Property of Representation Element")[
+#theorem(title: "Universal Property of Representation Element")[
   If $A$ is a representable functor, then its representation element is unique up to isomorphism.
 ]
 

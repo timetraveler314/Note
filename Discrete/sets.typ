@@ -1,10 +1,10 @@
-#import "@local/MetaNote:0.0.1" : *
+#import "@local/MetaNote:0.0.2" : *
 
 = Set Theory
 
 == Ordinals
 
-#lemma("Properties of Ordinals")[
+#lemma(title: "Properties of Ordinals")[
   (ii) For any ordinals $alpha, beta$, if $alpha subset.neq beta$, then $alpha in beta$.
 ]
 
@@ -26,7 +26,7 @@
   It is clear that the statement does not hold for finite cases. However, consider $abs(W) >= abs(NN)$.
 ]
 
-#definition("Dedekind Finite")[
+#definition(title: "Dedekind Finite")[
   A set $S$ is Dedekind finite if $
   forall T subset.neq S, abs(T) < abs(S).
   $

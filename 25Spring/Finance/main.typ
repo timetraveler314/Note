@@ -1,4 +1,4 @@
-#import "@local/MetaNote:0.0.1" : *
+#import "@local/MetaNote:0.0.2" : *
 #import "@preview/physica:0.9.0" : *
 
 #let detm = math.mat.with(delim: "|")
@@ -46,7 +46,7 @@ $
 
 === Option
 
-#definition("Option")[
+#definition(title: "Option")[
   *Call Option* gives the holder the right to buy an asset at a specified(exerciesd/strike) price on or before a specified expiration date.
 
   *Put Option* gives the holder ...
@@ -54,7 +54,7 @@ $
   Option confers a *right*, not an *obligation*.
 ]
 
-#definition("Future")[
+#definition(title: "Future")[
 
 ]
 
@@ -95,20 +95,20 @@ Organized secondary markets give assets liquidity.
 
 === Orders
 
-#definition("Market Order")[
+#definition(title: "Market Order")[
   buy/sell at the best available price.
 
   - Only quantity is specified, execution is immediate.
   - Posted ask price may change before the order is executed or as a result of the order.
 ]
 
-#note("Potential Problems with Market Orders")[
+#note(title: "Potential Problems with Market Orders")[
   - Large Orders: may not be executed at the same price.
   - Other Traders: another trader can beat our investor to the punch. Our order gets executed at a higher price.
   - Sudden Price Changes: the price at which the order is executed may be different from the price at which the order was placed.
 ]
 
-#definition("Limit Order")[
+#definition(title: "Limit Order")[
   buy/sell specified quantity at a specified price. 
   
   - Limit order is one kind of the _price-contingent order_ (the other being the stop order).
@@ -117,7 +117,7 @@ Organized secondary markets give assets liquidity.
 
 == Margin Trading
 
-#definition("Buying on Margin")[
+#definition(title: "Buying on Margin")[
   borrowing money to buy securities.
 
   - *Debt-financed asset purchases*: some money put up by the investor, the rest borrowed from the broker.
@@ -126,7 +126,7 @@ Organized secondary markets give assets liquidity.
   - There is *Margin Requirement*: the minimum portion of the purchase price contributed by the investor.
 ]
 
-#definition("Margin Requirements")[
+#definition(title: "Margin Requirements")[
   - *Initial Margin*: the minimum margin that must be supplied at the time of purchase, usually 50%.
   - *Maintenance Margin*: applies subsequently, sensitive to the value of the account.
 
@@ -135,7 +135,7 @@ Organized secondary markets give assets liquidity.
 
 Before giving an example on margin trading, we need to understand the *balance sheet* of a margin account.
 
-#theorem("Equity in a Margin Account")[
+#theorem(title: "Equity in a Margin Account")[
   $
     "Assets" = "Liabilities" + "Equity"
   $
@@ -154,7 +154,7 @@ Before giving an example on margin trading, we need to understand the *balance s
 //     )
 //   )
 
-#example("Margin Trading Example")[
+#example(title: "Margin Trading Example")[
   Investor balance sheet (initially):
 
   Suppose an investor buys 100 shares of a stock at \$50 per share, with an initial margin of 50%. The stock pays no dividends. The maintenance margin is 30%.
@@ -258,7 +258,7 @@ where $A$ is the coeff. of the investor's risk aversion, $E(r)$ is the expected 
 
 == Sharpe Ratio and Capital Allocation Line
 
-#definition("Sharpe Ratio")[
+#definition(title: "Sharpe Ratio")[
   The *Sharpe Ratio* (Reward-to-Votality Ratio) is a measure of the risk-adjusted return of an investment (i.e. the return in excess of the risk-free rate per unit of risk).
 
   $

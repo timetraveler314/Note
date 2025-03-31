@@ -1,4 +1,4 @@
-#import "@local/MetaNote:0.0.1" : *
+#import "@local/MetaNote:0.0.2" : *
 
 = Graph Theory
 

@@ -1,8 +1,8 @@
-#import "@local/MetaNote:0.0.1" : *
+#import "@local/MetaNote:0.0.2" : *
 
 #let detm = math.mat.with(delim: "|")
 
-#set text(font:("Charter", "FZShuSong-Z01"), lang: "cn")
+// #set text(font:("Charter"), lang: "cn")
 
 #show: doc => MetaNote(
   title: [
@@ -24,7 +24,7 @@
 
 == Converting Regular Expressions to DFA: Taking Derivatives
 
-#definition("Derivative of a Language")[
+#definition(title: "Derivative of a Language")[
   Given a language $L$ and a symbol $a$, the derivative of $L$ with respect to $a$, denoted as $D_a (L)$, is the set of strings that can be obtained by removing the prefix $a$ from each string in $L$.
 ]
 
@@ -32,7 +32,7 @@ Consider the problem of whether a string $s$ is in the language $L$. We see that
 
 Now we will show a theorem on derivative of regular languages, by whose construction we can convert a regular expression to a DFA.
 
-#theorem("Derivative of Regular Languages")[
+#theorem(title: "Derivative of Regular Languages")[
   Given a regular expression $r$ and a symbol $a$, the derivative of $r$ with respect to $a$, denoted as $D_a (r)$, is a regular expression such that $L(D_a (r)) = D_a (L(r))$.
 ]
 
@@ -60,7 +60,7 @@ As for regular expressions, taking derivatives is just like performing a step of
 
 == Grammar, Derivation and Reduction
 
-#definition("Derivation and Reduction")[
+#definition(title: "Derivation and Reduction")[
   Given a grammar $G = (V, T, P, S)$, if $alpha -> beta$ is a production rule in $P$, and $gamma, delta$ are strings consisted of $V union T$, then we say *$gamma alpha delta$ derives $gamma beta delta$ in one step*, denoted as $gamma alpha delta => gamma beta delta$. 
 
   *Derivation* $alpha_0 =>^* alpha_n$ is a sequence of derivation steps, and *reduction* (e.g. $gamma alpha delta arrow.l.double gamma beta delta$) is the reverse process of derivation.
@@ -68,7 +68,7 @@ As for regular expressions, taking derivatives is just like performing a step of
 
 == Ambiguity
 
-#definition("Ambiguity")[
+#definition(title: "Ambiguity")[
   A grammar is ambiguous if there exists a string that has more than one leftmost derivation.
 ]
 
@@ -80,7 +80,7 @@ As for regular expressions, taking derivatives is just like performing a step of
 
 By the key observation of @ambiguity-equiv, we can see that grammars that are $op("LL")(k)$ or $op("LR")(k)$ are unambiguous, since their corresponding parsers uniquely determine the leftmost or rightmost derivation.
 
-#example("")[
+#example[
   Consider the following grammar:
   $
     S ::= S S mono("+") | S S mono("*") | mono("a").
@@ -96,7 +96,7 @@ In cases like the grammer of `Expr`, we can eliminate ambiguity by adding more n
 
 In this section, we introduce the syntax $w : beta$ to denote that $w$ is a string of terminals that can be derived from $beta$, where $beta$ is the target of the parsing.
 
-#definition("Top-Down Parsing")[
+#definition(title: "Top-Down Parsing")[
   Top-down parsing is a parsing strategy that starts from the root of the parse tree and works its way down to the leaves. It is also called *predictive parsing*.
 ]
 
@@ -129,7 +129,7 @@ To eliminate indirect left recursion, we may rewrite the grammar into a _strictl
 + For every rule $A_i ::= A_j gamma (j < i)$, replace it with $A_i ::= delta_1 gamma | ... | delta_k gamma$, where $A_j ::= delta_1 | ... | delta_k$.
 + Further eliminate the direct left recursion in $A_i$.
 
-- *Left Factoring*: When $A::= beta_1 | beta_2$ s.t. $FIRST(beta_1) sect FIRST(beta_2) != emptyset$, predictively parsing $A$ is impossible. However, if there are multiple rules starting with the same prefix, we can factor out the common prefix.
+- *Left Factoring*: When $A::= beta_1 | beta_2$ s.t. $FIRST(beta_1) inter FIRST(beta_2) != emptyset$, predictively parsing $A$ is impossible. However, if there are multiple rules starting with the same prefix, we can factor out the common prefix.
 
 $
   A ::= alpha beta_1 | alpha beta_2 ==> A ::= alpha A', A' ::= beta_1 | beta_2.
@@ -150,7 +150,7 @@ Now we simplify the question to only $1$ token lookahead. Given the next token, 
     [4] space P &-> epsilon.
   $
 
-  The grammar itself is clearly not $op("LL")(1)$ because $FIRST(mono("a")S) sect FIRST(P) = {a}$. 
+  The grammar itself is clearly not $op("LL")(1)$ because $FIRST(mono("a")S) inter FIRST(P) = {a}$. 
   
   The intuition that _only upon seeing $b$ can we decide which rule to apply_ is the key to understanding the non-$op("LL")$ nature of this language. Actually, we can prove that no $op("LL")(k)$ parser exists for this language.
 ]
@@ -173,7 +173,7 @@ To specify the semantics of a programming language, a pratical way is to use att
 
 == Synthesized and Inherited Attributes
 
-#definition("Synthesized and Inherited Attributes")[
+#definition(title: "Synthesized and Inherited Attributes")[
   Given a grammar $G = (V, T, P, S)$, an attribute grammar is a set of rules of the form $X.a = f(X_1.a_1, ..., X_n.a_n)$, where $X$ is a non-terminal, $a$ is an attribute, and $f$ is a function that computes the value of $X.a$ from the values of $X_1.a_1, ..., X_n.a_n$.
 
   - *Synthesized attributes*: the value of $X.a$ is computed from the values of the attributes of the children of $X$. Information flows from the leaves to the root, a _synthesis_ process.
@@ -187,7 +187,7 @@ According to the definition, we can see that:
 
 To actually compute the attributes, we can build a dependency graph to represent the dependencies between attributes, and thus a topological sort can be used to compute the attributes in the right order.
 
-#definition("Dependency Graph")[
+#definition(title: "Dependency Graph")[
   Given an attribute grammar, the dependency graph is a directed graph where each node is an attribute, and there is an edge from $X.a$ to $Y.b$ if the computation of $Y.b$ depends on the value of $X.a$.
 ]
 
