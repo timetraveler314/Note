@@ -15,6 +15,7 @@
     ),
   ),
   doc,
+  head_numbering: none
 )
 
 #let balsheet = table.with(
@@ -29,6 +30,17 @@
 )
 
 = Lec 3. Asset Classes
+
+== Fixed-income Markets
+
+=== T-Bills
+
+- US debt instruments with maturities of one year or less.
+- _Yields_:
+$
+  "Discount Yield" = ("FV" - "Price") / "FV" times (360 / "Days to Maturity"), "(understate)" \
+  "Investment Yield" = ("FV" - "Price") / "Price" times (365 / "Days to Maturity"), "(relate to the actual return)"
+$
 
 == Equities
 
@@ -55,7 +67,9 @@ $
 ]
 
 #definition(title: "Future")[
-
+  - Two sides to contract: long position (commitment to purchase, 多头) and short position (commitment to deliver, 空头)
+  - Long position is bullish; short bearish
+  - Futures contracts are entered into *without cost*
 ]
 
 = Lec. 4 Trading, Margin and Short Sale
@@ -70,8 +84,7 @@ $
 
 - *Process of IPO*:
 - Underwriter: a financial institution that helps the firm issue securities.
-- Prospectus
-- Road Show
+- Prospectus and Road Show
 
 + *Secondary Market*: Trading of Outstanding Securities (Securities already issued)
 
@@ -127,6 +140,10 @@ Organized secondary markets give assets liquidity.
 ]
 
 #definition(title: "Margin Requirements")[
+  $
+    "Margin" = "Equity" / bold("Total Value of Securities")
+  $
+
   - *Initial Margin*: the minimum margin that must be supplied at the time of purchase, usually 50%.
   - *Maintenance Margin*: applies subsequently, sensitive to the value of the account.
 
@@ -289,3 +306,6 @@ Taking derivative w.r.t. $bold(w)$
 $
   derivative(U(bold(w)),bold(w)) = r_f + underbrace(bold(w)^top (bold(E(r)) - bold(1) r_f)) - A bold(Sigma) bold(w) = 0
 $
+
+= Lec. 14 Capital Asset Pricing Model
+

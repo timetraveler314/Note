@@ -17,6 +17,8 @@
   doc,
 )
 
+#let Cov = math.op("Cov")
+
 = Basics
 
 == Axiomization of Probability
@@ -196,3 +198,78 @@ It's easy to check that conditional probability satisfies the properties of a pr
   $
 ]
 
+= No Title
+
+== Correlation and Covariance
+
+#theorem()[
+  $rho_(X Y) = 1$ iff $X$ and $Y$ are perfectly linearly correlated, i.e. 
+  $
+    exists a, b, P(Y = a X + b) = 1.
+  $
+]
+
+#proof[
+  Recall that to prove a event has probability $1$, we may show its variance is $0$.
+
+  $
+    D(Y - a X) &= EE(Y - a X)^2 \
+    &= a^2 EE(X^2) - 2 a EE(X Y) + EE(Y^2) = 0.
+  $
+
+  It suffices to show that the above equation has a root $a$. $Delta = 0$ obviously, and we're done.
+]
+
+#definition(title: "Not Linear Correlated")[
+  If $X,Y$ are not linearly correlated, then
+  - $rho_(X Y) = Cov(X,Y) = 0$,
+  - $Cov(X,Y) = E(X Y) - E(X) E(Y) = 0$,
+  - $D(X+Y) = D(X) + D(Y) + 2 Cov(X,Y) = D(X) + D(Y)$,
+
+  and the above conditions are equivalent.
+]
+
+#note(title: "Independence and Correlation")[
+  Independence do imply irrelevance, but not the other way around. For example, $X tilde cal(N)(0,1), Y = abs(X)$. 
+  - $EE(X) = 0, EE(X Y) = 0$, hence they are uncorrelated.
+  - $P(X <= c, Y<= c) = P(Y<=c) =^? P(X<=c)P(Y<=c)$, meaning they are not independent.
+]
+
+== Higher Moments
+
+#definition(title: "Mixed Moment")[
+  The $k+l$ mixed moment of random variables $X$ and $Y$ is defined as $EE(X^k Y^(l))$; the central $k+l$ mixed moment is defined as $EE((X - EE(X))^k (Y - EE(Y))^l)$.
+]
+
+= Midterm Review
+
+== Inequalities
+
+#theorem(title: "Single-Sided Chebyshev's Inequality")[
+  For any random variable $X$ with finite mean $EE[X]$ and finite variance $sigma^2$, the following inequality holds for all $lambda$:
+
+  $ P(X - EE[X] >= lambda) <= sigma^2 / (sigma^2+lambda^2). $
+]
+
+#proof[
+  Choose a parameter $u$ and denote $Y = X - EE[X]$. Follow the idea used in Chebyshev's inequality, we have:
+  $
+    P(X-EE[X] >= lambda) &= P(Y+u >= lambda + u) \
+    &<= P((Y+u)^2 >= (lambda + u)^2) \
+    &<= EE[(Y+u)^2]/(lambda + u)^2 \
+    &= (sigma^2 + u^2) / (lambda + u)^2 \
+    &=^(u = sigma^2/lambda) sigma^2 / (sigma^2 + lambda^2).
+  $
+
+  The choice of $u$ above minimizes the right-hand side of the inequality.
+
+  Equality holds when:
+  - $Pr[Y<= -lambda - 2u] = 0$,
+  - Markov's inequality: 
+    - equality when $EE[X] = a P(X>=a) <=> EE[X - X dot bold(1)_{X>=a}] = 0$, and since $X, bold(1)_{X>=a} >= 0$, this means $X = X dot bold(1)_{X>=a}$ almost surely. 
+    - Further, $Pr(X>a) !=0$ violates $EE[X] = a P(X>=a)$, so $Pr(X>a) = 0$.
+    - This means that $X$ follows a two-point distribution almost surely.
+    - In this case, $(Y+u)^2$ follows a two-point distribution as well, at $Y = -u$ and $Y = lambda or -lambda - 2u$. $-lambda - 2u$ is not possible since $Pr(Y<= -lambda - 2u) = 0$.
+
+  In simple terms, the equality holds when $X$ is a two-point distribution, where $Pr[X = EE[X]-sigma^2/lambda] = lambda^2/(lambda^2+sigma^2) space (1-"RHS")$ and $Pr[X = EE[X]+lambda] = sigma^2/(lambda^2+sigma^2) space ("RHS")$.
+]

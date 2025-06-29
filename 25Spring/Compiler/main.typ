@@ -159,7 +159,25 @@ Now we simplify the question to only $1$ token lookahead. Given the next token, 
 
 == PEG and Packrat Parsing
 
+#definition(title: "Parsing Expression Grammar (PEG)")[
+  Failure-driven parsing?
+  - *Terminal* $a$: recognizes the string $a$.
+  - $e_1 e_2$: first recognizes $e_1$. If successful, it recognizes $e_2$. If one of them fails, the whole expression fails.
+  - $e_1 slash e_2$: first recognizes $e_1$. If $e_1$ fails, it recognizes $e_2$ from the same position.
+    - $S <- mono("i")S mono("e")S slash mono("i")S slash mono("a")$ can correctly parse dangling else.
+  - $e_1 ast$: similar to regular expression, but greedy.
+    - Meaning $0 ast 0$ cannot recognize any string.
+  - *Predicates*: lookahead the symbols, and succeed if the lookahead satisfies the predicate.
+    - $amp e$: if lookahead $e$ succeeds, then it succeeds.
+    - $! e$: if lookahead $e$ fails, then it succeeds.
+    - Example: $C <- mono("open") (C slash (!mono("close") mono("any"))) ast mono("close")$ will handle nested parentheses.
+]
+
 ...
+
+== Bottom-Up Parsing with LR
+
+
 
 = Semantic Analysis
 
@@ -193,7 +211,34 @@ To actually compute the attributes, we can build a dependency graph to represent
 
 However, there might be cycles in the dependency graph. Sometimes this is acceptable: e.g. modelling the evaluation of a loop with attributes, where we can properly select a starting point, repeatedly update the attributes whenever the attributes that it depends on are updated, and terminate when the attributes reach a fixed point.
 
-But in general, we wish no cycles in the dependency graph. This goal isn't always easy to justify, so we switch our focus onto some specific types of attribute grammars where we can guarantee the acyclicity of the dependency graph.
+But in general, we wish no cycles in the dependency graph. This goal isn't always easy to justify, so we switch our focus onto some specific types of attribute grammars where we can guarantee the acyclicity of the dependency graph. And most importantly, we can compute the attributes in a single pass, combined with the parsing process.
 
 == S-attributed and L-attributed Grammars
+
+= Target Code Generation
+
+== Intra-Block Generation
+
+=== `getReg`
+
+- *Goal*: reduce the number of memory accesses by using registers.
+- *How?*: take `x = y op z` as an example. Our aim is to select registers for the result `x` and the operands `y` and `z`.
+  - #[
+    For loading operand `y`:
+    - If `y` is in register, we can use it directly.
+    - If there is a register available, we can use it to store the result.
+    - Otherwise suppose $R$ is a candidate that stores the value of another variable `v`.
+      - If the address descriptor of `v ` contains other positions, we can directly use `v` to store the result.
+      - If `v` is `x`, we can use `v` as long as `z` is not `x`, so that operand `y` will not overwrite `z`.
+      - Otherwise, we need to spill `v` to memory, and load `y` into the register.
+  ]
+  - #[
+    For storing result `x`:
+    - If `x` is in register, and the register is not used by other variables, we can use it directly.
+    - If a operand `y` is not active after this instruction, we can use `y` to store the result as long as the register is not used by other variables.
+    - Otherwise, a spill is needed.
+  ]
+  - For a copy `x = y`, just get the register of `y` and let $R_x = R_y$.
+
+== Register Allocation
 

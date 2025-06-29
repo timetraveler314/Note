@@ -1,4 +1,5 @@
 #import "@local/MetaNote:0.0.2" : *
+#import "@preview/physica:0.9.0": *
 
 #let detm = math.mat.with(delim: "|")
 
@@ -39,3 +40,12 @@
     &= (r+k)!/(k! (r-1)! (k+r)).
   $
 ]
+
+$
+  norm(bold(W)bold(X)+bold(B))_F^2 &= tr(bold(W)bold(X)+bold(B))^top (bold(W)bold(X)+bold(B)) \
+  &= tr(bold(X)^top bold(W)^(top) bold(W)bold(X)) + tr(bold(B)^top bold(B)) + tr(bold(W)bold(X))^top bold(B) + tr(bold(B)^top bold(W)bold(X)) \
+$
+
+$
+  pdv(norm(bold(W)bold(X)+bold(B))_F^2,bold(W)) = 2 (bold(W) bold(X) + bold(B)) X^(top)
+$
